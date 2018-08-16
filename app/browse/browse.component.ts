@@ -11,7 +11,7 @@ registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
     styleUrls: ["./browse.component.css"]
 })
 export class BrowseComponent implements OnInit {
-    info: { fname: string, lname: string, p_no1: number, p_no2: number, p_no3: number, e1: string, e2: string} = {
+    info: { fname: string, lname: string, p_no1: number, p_no2: number, p_no3: number, e1: string, e2: string } = {
         fname: "Ed Sheeran",
         lname: "X",
         p_no1: 2017,
@@ -20,6 +20,17 @@ export class BrowseComponent implements OnInit {
         e1: "",
         e2: ""
     };
+
+    //to add fields via fab
+
+    fieldArray: Array<any> = [];
+    newAttribute: any = {};
+
+    // firstField = true;
+    // firstFieldName = 'First Item name';
+    isEditItems: boolean;
+
+    //form fields
     textfield = "";
     textfield1 = "";
     textfield2 = "";
@@ -36,7 +47,17 @@ export class BrowseComponent implements OnInit {
         const sideDrawer = <RadSideDrawer>app.getRootView();
         sideDrawer.showDrawer();
     }
-    fabTap(): void {
+    fabTap(index): void {
         console.log("tapped");
+        this.fieldArray.push(this.newAttribute);
+        this.newAttribute = {};
+
+        console.log(this.fieldArray.toString())
     }
+    // addFieldValue(index) {
+    //     if (this.fieldArray.length <= 2) {
+    //         this.fieldArray.push(this.newAttribute);
+    //         this.newAttribute = {};
+    //     }
+    // }
 }
