@@ -12,7 +12,7 @@
 }
 .fab-button {
     height: 70;
-    
+    position: absolute;
     margin: 15;
     background-color : #ff4081; 
     horizontal-align : right; 
