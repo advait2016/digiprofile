@@ -3,6 +3,7 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angular";
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
+import { registerElement } from "nativescript-angular/element-registry";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
