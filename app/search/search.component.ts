@@ -13,8 +13,8 @@ const ImageSource = require("image-source");
 })
 export class SearchComponent implements OnInit {
     @ViewChild("barcodeImg") barcodeImg: ElementRef;
-    public tabSelectedIndex: number;
-    public data = new Array("BEGIN:VCARD",
+    tabSelectedIndex: number;
+    data = new Array("BEGIN:VCARD",
         "VERSION:3.0",
         "N:Doe;John;;;",
         "FN:John Doe",
@@ -48,7 +48,7 @@ export class SearchComponent implements OnInit {
         // Init your component properties here.
     }
 
-    generateBarCode(){
+    generateBarCode() {
         this.barcodeText = this.data.toString();
         const barcodeImage = <Image>this.barcodeImg.nativeElement;
         const zx = new ZXing();

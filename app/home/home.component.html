@@ -9,13 +9,20 @@
     NavigationButton as a side-drawer button in iOS is not possible,
     because its function is to always navigate back in the application.
     -->
-    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
-        ios.position="left">
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()" ios.position="left">
     </ActionItem>
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf015;"></Label>
 
-</GridLayout>
+<!-- List Displaying the scanned contact cards using the contact QR scanner module -->
+<StackLayout class="page page-content">
+    <Label class="h1 text-center" text="Scanned Contacts"></Label>
+    <ListView [items]="contacts" (itemTap)="onItemTap($event)" class="list-group">
+        <ng-template let-contact="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout class="list-group-item">
+                <Label [text]="contact.name"></Label>
+            </GridLayout>
+        </ng-template>
+    </ListView>
+</StackLayout>
