@@ -4,7 +4,8 @@ import { NativeScriptUISideDrawerModule } from "nativescript-ui-sidedrawer/angul
 import { NativeScriptCommonModule } from "nativescript-angular/common";
 import { NativeScriptFormsModule } from "nativescript-angular/forms";
 import { registerElement } from "nativescript-angular/element-registry";
-
+import { BarcodeScanner } from 'nativescript-barcodescanner';
+import {ReactiveFormsModule}  from '@angular/forms'
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
@@ -15,13 +16,17 @@ import { AppComponent } from "./app.component";
     imports: [
         AppRoutingModule,
         NativeScriptModule,
-        NativeScriptUISideDrawerModule
+        NativeScriptUISideDrawerModule,
+        ReactiveFormsModule,NativeScriptFormsModule
     ],
     declarations: [
         AppComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
+    ],
+    providers: [
+        BarcodeScanner
     ]
 })
 export class AppModule { }

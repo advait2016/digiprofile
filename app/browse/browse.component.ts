@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { registerElement } from "nativescript-angular/element-registry";
-registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
+//import { TextField } from "../../node_modules/tns-core-modules/ui/text-field/text-field";
 
 @Component({
     selector: "Browse",
@@ -10,33 +10,10 @@ registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
     templateUrl: "./browse.component.html",
     styleUrls: ["./browse.component.css"]
 })
-export class BrowseComponent implements OnInit {
-    info: { fname: string, lname: string, p_no1: number, p_no2: number, p_no3: number, e1: string, e2: string } = {
-        fname: "Ed Sheeran",
-        lname: "X",
-        p_no1: 2017,
-        p_no2: 1,
-        p_no3: 9.5,
-        e1: "",
-        e2: ""
-    };
+export class BrowseComponent implements OnInit  {
 
-    // to add fields via fab
-    fieldArray: Array<any> = [];
-    newAttribute: any = {};
-
-    // Added isEditIcon to allow to track whether adding icon or edit icon is to be displayed.
-    isEditIcon: boolean = false;
-
-    // To check if editing is enabled.
-    isEditItems: boolean;
-
-    // form fields
-    textfield = "";
-    textfield1 = "";
-    textfield2 = "";
-
-    constructor() {
+     pref:any;
+    constructor() { 
         // Use the component constructor to inject providers.
     }
 
@@ -49,6 +26,85 @@ export class BrowseComponent implements OnInit {
         sideDrawer.showDrawer();
     }
 
+    save()
+    {
+        console.log("hello");
+        this.pref = require("nativescript-android-preferences");
+            var lname ={
+                datavalue: "",
+                datatype: this.pref.DataTypes.STRING,
+                prefname: "lname"
+               }
+            lname.datavalue="Doe"
+            this.pref.SavePreference(lname);
+            lname.datavalue = "DefStringPreference";
+
+           var fname ={
+                datavalue: "",
+                datatype: this.pref.DataTypes.STRING,
+                prefname: "fname"
+               }
+               fname.datavalue="john";
+               this.pref.SavePreference(fname);
+               fname.datavalue = "DefStringPreference";
+              
+                 var email ={
+                datavalue: "",
+                datatype: this.pref.DataTypes.STRING,
+                prefname: "email"
+               }   
+               email.datavalue="johndoe@example.com";
+               this.pref.SavePreference(email);
+               email.datavalue="DefStringPreference";
+
+               var ph1 ={
+                datavalue: "",
+                datatype: this.pref.DataTypes.STRING,
+                prefname: "ph1"
+               }
+                ph1.datavalue="9876543210";
+                this.pref.SavePreference(ph1);
+                ph1.datavalue="DefStringPreference";
+            console.log(this.pref.GetPreference(lname) +" "+ this.pref.GetPreference(fname)+ " " + this.pref.GetPreference(email) + " " +this.pref.GetPreference(ph1) );
+   }
+
+   show()
+   {
+   var fname ={
+        datavalue: "",
+        datatype: this.pref.DataTypes.STRING,
+        prefname: "fname"
+       }
+     var  lname ={
+        datavalue: "",
+        datatype: this.pref.DataTypes.STRING,
+        prefname: "lname"
+       }
+    
+      var email ={
+        datavalue: "",
+        datatype: this.pref.DataTypes.STRING,
+        prefname: "email"
+       }   
+
+       var ph1 ={
+        datavalue: "",
+        datatype: this.pref.DataTypes.STRING,
+        prefname: "ph1"
+       }
+    
+       
+      console.log(this.pref.GetPreference(lname) +" "+ this.pref.GetPreference(fname)+ " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
+     
+    }
+   
+
+
+
+
+
+
+
     /**
      *  Allows user to make the user information editable
      * and allows to add new fields(of type: contact, email, and additional text fields. )
@@ -56,11 +112,47 @@ export class BrowseComponent implements OnInit {
      *
      */
 
-    fabTap(index): void {
-        this.isEditIcon = true;
-        console.log("tapped");
-        this.fieldArray.push(this.newAttribute);
-        this.newAttribute = {};
-        console.log(this.fieldArray.toString());
-    }
 }
+
+
+
+ /*var  fname ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "fname"
+          }
+        var  lname ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "lname"
+          }
+       
+         var email ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "email"
+          }   
+          var ph1 ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "ph1"
+          }
+   
+          var ph2 ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "ph1"
+          }
+           
+          ph1.datavalue="8007795817";
+          ph2.datavalue="9898989898";
+          fname.datavalue="Advait";
+          lname.datavalue="Pundlik";
+          email.datavalue="advait.pundlik@xoriant.com";
+
+         
+          this.pref.SavePreference(fname);
+          this.pref.SavePreference(lname);
+          this.pref.SavePreference(email);
+          this.pref.SavePreference(ph1);
+          this.pref.SavePreference(ph2); */

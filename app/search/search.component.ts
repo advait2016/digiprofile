@@ -14,7 +14,8 @@ const ImageSource = require("image-source");
 export class SearchComponent implements OnInit {
     @ViewChild("barcodeImg") barcodeImg: ElementRef;
     tabSelectedIndex: number;
-    data = new Array("BEGIN:VCARD",
+    
+    /*data = new Array("BEGIN:VCARD",
         "VERSION:3.0",
         "N:Doe;John;;;",
         "FN:John Doe",
@@ -38,18 +39,26 @@ export class SearchComponent implements OnInit {
         "item5.X-ABLabel:_$!<Friend>!$_",
         "CATEGORIES:Work,Test group",
         "X-ABUID:5AD380FD-B2DE-4261-BA99-DE1D1DB52FBE\:ABPerson",
-        "END:VCARD");
+        "END:VCARD");*/
+
+        fname:string; lname:string; email:string; ph1:string ; ph2:string; 
+        data:string = "{ fname:"+this.fname+"lname:"+ this.lname + "email:"+this.email + "ph1:"+ this.ph1 +"ph2:"+ this.ph2 +"}"
+
     public barcodeText = new String();
     constructor() {
         this.tabSelectedIndex = 1;
     }
+
+
+
 
     ngOnInit(): void {
         // Init your component properties here.
     }
 
     generateBarCode() {
-        this.barcodeText = this.data.toString();
+    
+        this.barcodeText = this.data;
         const barcodeImage = <Image>this.barcodeImg.nativeElement;
         const zx = new ZXing();
         const newImg = zx.createBarcode({
