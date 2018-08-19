@@ -1,7 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
 import * as app from "application";
 import { RadSideDrawer } from "nativescript-ui-sidedrawer";
 import { registerElement } from "nativescript-angular/element-registry";
+//import { TextField } from "../../node_modules/tns-core-modules/ui/text-field/text-field";
+
+
+
 registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
 
 @Component({
@@ -10,33 +14,10 @@ registerElement("Fab", () => require("nativescript-floatingactionbutton").Fab);
     templateUrl: "./browse.component.html",
     styleUrls: ["./browse.component.css"]
 })
-export class BrowseComponent implements OnInit {
-    info: { fname: string, lname: string, p_no1: number, p_no2: number, p_no3: number, e1: string, e2: string } = {
-        fname: "Ed Sheeran",
-        lname: "X",
-        p_no1: 2017,
-        p_no2: 1,
-        p_no3: 9.5,
-        e1: "",
-        e2: ""
-    };
+export class BrowseComponent implements OnInit  {
 
-    // to add fields via fab
-    fieldArray: Array<any> = [];
-    newAttribute: any = {};
-
-    // Added isEditIcon to allow to track whether adding icon or edit icon is to be displayed.
-    isEditIcon: boolean = false;
-
-    // To check if editing is enabled.
-    isEditItems: boolean;
-
-    // form fields
-    textfield = "";
-    textfield1 = "";
-    textfield2 = "";
-
-    constructor() {
+     pref:any;
+    constructor() { 
         // Use the component constructor to inject providers.
     }
 
@@ -49,6 +30,31 @@ export class BrowseComponent implements OnInit {
         sideDrawer.showDrawer();
     }
 
+    save()
+    {
+        this.pref = require("nativescript-android-preferences");
+          var options = {
+            datavalue: "XORIANT",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "KEY"
+        }   
+       this.pref.SavePreference(options);
+       options.datavalue = "DefStringPreference";
+       console.log("hello");
+   }
+
+   show(){
+      alert(this.pref.GetPreference("KEY")); 
+      console.log("hello");
+    }
+   
+
+
+
+
+
+
+
     /**
      *  Allows user to make the user information editable
      * and allows to add new fields(of type: contact, email, and additional text fields. )
@@ -56,11 +62,47 @@ export class BrowseComponent implements OnInit {
      *
      */
 
-    fabTap(index): void {
-        this.isEditIcon = true;
-        console.log("tapped");
-        this.fieldArray.push(this.newAttribute);
-        this.newAttribute = {};
-        console.log(this.fieldArray.toString());
-    }
 }
+
+
+
+ /*var  fname ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "fname"
+          }
+        var  lname ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "lname"
+          }
+       
+         var email ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "email"
+          }   
+          var ph1 ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "ph1"
+          }
+   
+          var ph2 ={
+           datavalue: "",
+           datatype: this.pref.DataTypes.STRING,
+           prefname: "ph1"
+          }
+           
+          ph1.datavalue="8007795817";
+          ph2.datavalue="9898989898";
+          fname.datavalue="Advait";
+          lname.datavalue="Pundlik";
+          email.datavalue="advait.pundlik@xoriant.com";
+
+         
+          this.pref.SavePreference(fname);
+          this.pref.SavePreference(lname);
+          this.pref.SavePreference(email);
+          this.pref.SavePreference(ph1);
+          this.pref.SavePreference(ph2); */

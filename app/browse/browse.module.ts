@@ -11,6 +11,7 @@ import { registerElement } from "nativescript-angular/element-registry";
 import { BrowseRoutingModule } from "./browse-routing.module";
 import { BrowseComponent } from "./browse.component";
 
+
 @NgModule({
     imports: [
         NativeScriptCommonModule,
@@ -22,6 +23,7 @@ import { BrowseComponent } from "./browse.component";
     ],
     declarations: [
         BrowseComponent
+        
     ],
     schemas: [
         NO_ERRORS_SCHEMA

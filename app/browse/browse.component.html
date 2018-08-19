@@ -16,26 +16,18 @@
 
 <GridLayout class="page page-content">
     <ScrollView>
-        <StackLayout class="p-20" ng-app="">
-            <Label text="First Name" for="fn"></Label>
-            <TextField required hint="John" [(ngModel)]="textField" #fn="ngModel" ng-disabled="all"></TextField>
-            <Label class="validation" [visibility]="fn.valid ? 'collapse' : 'visible'" text="Field is required"></Label>
+            <StackLayout>
+            <Label text= " name"  ></Label>
+            <TextField hint ="john"   ></TextField>
+            <Label text="last  name "></Label>
+            <TextField hint ="Doe"   ></TextField>
+            <Label text="Email" > </Label>
+            <TextField hint ="native script sucks " ></TextField>
+            <Button  text="save" (tap)="save()" ></Button>
+            <Button  text="show" (tap)="show()" ></Button>
 
-            <Label text="Last Name" for="ln"></Label>
-            <TextField required hint="Doe" [(ngModel)]="textField1" #ln="ngModel" ng-disabled="all"></TextField>
-            <Label class="validation" [visibility]="ln.valid ? 'collapse' : 'visible'" text="Field is required"></Label>
+            </StackLayout>
 
-            <Label text="Email" for="em"></Label>
-            <TextField required hint="john.doe@example.com" [(ngModel)]="textField2" #em="ngModel" ng-model="all"></TextField>
-            <Label class="validation" [visibility]="em.valid ? 'collapse' : 'visible'" text="Field is required"></Label>
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <TextField *ngFor="let field of fieldArray; let i = index" [(ngModel)]="field.name" field.id="ngModel" required ng-disabled="all"></TextField>
-                    <Label class="validation" [visibility]="em.valid ? 'collapse' : 'visible'" text="Field is required"></Label>
-                </div>
-            </div>
-            <Button *ngIf="fn.valid && ln.valid && em.valid" text="Save" class="btn btn-primary" (tap)="save()"></Button>
-        </StackLayout>
+
     </ScrollView>
-    <FAB (tap)="fabTap()" icon="res://ic_add_white" rippleColor="#f1f1f1" class="fab-button" ng-model="all"></FAB>
 </GridLayout>
