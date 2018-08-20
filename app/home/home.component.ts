@@ -61,7 +61,8 @@ export class HomeComponent implements OnInit {
             newContact.name.given = json.fname;
             newContact.name.family = json.lname;
             newContact.phoneNumbers.push({ label: contacts.KnownLabel.HOME, value: json.ph1 }); // See below for known labels
-            newContact. emailAddresses.push({ label:contacts.KnownLabel.HOME, value:json.email });
+            newContact.emailAddresses.push({ label:contacts.KnownLabel.HOME, value:json.email });
+            newContact.urls.push({ label:"linkedin", value:json.linkedin });
             newContact.save();
 
         }, (error) => {

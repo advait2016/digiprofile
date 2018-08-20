@@ -15,12 +15,11 @@
 </ActionBar>
 <TabView selectedIndex="0">
     <StackLayout *tabItem="{title: 'Personal Profile'}">
-        <Label text="&#xf0c0;" class="page-icon fa"></Label>
-        <Image #barcodeImg id="barcode-img" class="text-center"></Image>
-        <Button (tap)="show()"  class="btn btn-primary btn-active" text="check"></Button>
+        <Image #personalBarcode id="barcode-img" class="text-center"></Image>
+        <Button (tap)="generatePersonalBarCode()"  class="btn btn-primary btn-active" text="Personal Profile QR"></Button>
     </StackLayout>
     <StackLayout *tabItem="{title: 'Work Profile'}">
         <Image #barcodeImg id="barcode-img" class="text-center"></Image>
-        <Button (tap)="generateBarCode()" id="barcode" class="btn btn-primary btn-active" text="GENERATE BARCODE"></Button>
+        <Button (tap)="generateBarCode()" id="barcode" class="btn btn-primary btn-active" text="Work Profile QR"></Button>
     </StackLayout>
 </TabView>

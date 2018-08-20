@@ -68,6 +68,16 @@ export class BrowseComponent implements OnInit {
         ph1.datavalue = this.phone_number;
         this.pref.SavePreference(ph1);
         ph1.datavalue = "DefStringPreference";
+
+        var linkedin = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "linkedin"
+        }
+        linkedin.datavalue = this.LinkedIn;
+        this.pref.SavePreference(linkedin);
+        linkedin.datavalue = "DefStringPreference";
+
         console.log(this.pref.GetPreference(lname) + " " + this.pref.GetPreference(fname) + " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
     }
 
@@ -95,8 +105,13 @@ export class BrowseComponent implements OnInit {
             prefname: "ph1"
         }
 
+        var linkedin = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "linkedin"
+        }
 
-        console.log(this.pref.GetPreference(lname) + " " + this.pref.GetPreference(fname) + " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
+        console.log(this.pref.GetPreference(lname) + " " + this.pref.GetPreference(fname) + " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1)+" "+ this.pref.GetPreference(linkedin));
 
     }
 

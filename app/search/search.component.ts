@@ -13,13 +13,20 @@ const ImageSource = require("image-source");
 })
 export class SearchComponent implements OnInit {
     @ViewChild("barcodeImg") barcodeImg: ElementRef;
-    tabSelectedIndex: number;
-    
-   
+    @ViewChild("personalBarcode") personalbar: ElementRef;
 
-    fname: string="rrrrr"; lname: string="eeeeeee"; email :string="advait.pundlik@xoriant.com";  ph1:string="8007795817";  ph2:string="9876543210";
-    data = "{\"fname\": " + this.fname + "," + "\"lname\": "+ this.lname+ "," + "\"email\":" + this.email + "," + "\"ph1\":" + this.ph1  + "," +  "\"ph2\":" + this.ph2 + "}"
-      
+    tabSelectedIndex: number;
+
+
+
+    fname: string = "rrrrr";
+    lname: string = "eeeeeee";
+    email: string = "advait.pundlik@xoriant.com";
+    ph1: string = "8007795817";
+    ph2: string = "9876543210";
+    linkedin: string = "";
+    data = "{\"fname\": " + this.fname + "," + "\"lname\": " + this.lname + "," + "\"email\":" + this.email + "," + "\"ph1\":" + this.ph1 + "," + "\"ph2\":" + this.ph2 + "}"
+
     public barcodeText = new String();
     constructor() {
         this.tabSelectedIndex = 1;
@@ -58,11 +65,18 @@ export class SearchComponent implements OnInit {
             prefname: "ph1"
         }
 
-        this.fname =this.pref.GetPreference(lname) ;
-        this.lname= this.pref.GetPreference(fname) ;
-        this.email =this.pref.GetPreference(email) ;
+        var linkedin = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "linkedin"
+        }
+
+        this.fname = this.pref.GetPreference(lname);
+        this.lname = this.pref.GetPreference(fname);
+        this.email = this.pref.GetPreference(email);
         this.ph1 = this.pref.GetPreference(ph1);
-        this.data = "{\"fname\": " + "\""+this.fname+"\""+","+"\"lname\":"+ "\""+this.lname +"\""+","+"\"email\":" + "\"" + this.email +"\""+ "," + "\"ph1\":" + "\"" + this.ph1 + "\"" + "," + "\"ph2\":" + "\"" +this.ph2 + "\"" + "}"
+        this.linkedin = this.pref.GetPreference(linkedin);
+        this.data = "{\"fname\": " + "\"" + this.fname + "\"" + "," + "\"lname\":" + "\"" + this.lname + "\"" + "," + "\"email\":" + "\"" + this.email + "\"" + "," + "\"ph1\":" + "\"" + this.ph1 + "\"" + "," + "\"ph2\":" + "\"" + this.ph2 + "\"" + ",\"linkedin\":" + "\"" + this.linkedin + "\"" + "}"
         this.barcodeText = this.data;
         const barcodeImage = <Image>this.barcodeImg.nativeElement;
         const zx = new ZXing();
@@ -87,7 +101,47 @@ export class SearchComponent implements OnInit {
         }
     }
 
-    pref:any;
+    generatePersonalBarCode() {
+        this.pref = require("nativescript-android-preferences");
+        var fname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "fname"
+        }
+        var lname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "lname"
+        }
+
+        var email = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "email"
+        }
+
+        var ph1 = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "ph1"
+        }
+
+        this.fname = this.pref.GetPreference(lname);
+        this.lname = this.pref.GetPreference(fname);
+        this.email = this.pref.GetPreference(email);
+        this.ph1 = this.pref.GetPreference(ph1);
+        this.data = "{\"fname\": " + "\"" + this.fname + "\"" + "," + "\"lname\":" + "\"" + this.lname + "\"" + "," + "\"email\":" + "\"" + this.email + "\"" + "," + "\"ph1\":" + "\"" + this.ph1 + "\"" + "," + "\"ph2\":" + "\"" + this.ph2 + "\"" + "}";
+        this.barcodeText = this.data;
+        const personalBarcode = <Image>this.personalbar.nativeElement;
+        const zx = new ZXing();
+        const newImg = zx.createBarcode({
+            encode: this.barcodeText,
+            formats: [ZXing.QR_CODE, ZXing.ITF]
+        });
+        personalBarcode.imageSource = ImageSource.fromNativeSource(newImg);
+    }
+
+    pref: any;
 
     show() {
 
@@ -116,10 +170,11 @@ export class SearchComponent implements OnInit {
         }
 
 
-     this.pref.GetPreference(lname) ;
-     this.pref.GetPreference(fname) 
-     this.pref.GetPreference(email) 
-     this.pref.GetPreference(ph1);
+
+        this.pref.GetPreference(lname);
+        this.pref.GetPreference(fname)
+        this.pref.GetPreference(email)
+        this.pref.GetPreference(ph1);
 
     }
 
