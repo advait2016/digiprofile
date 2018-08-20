@@ -54,37 +54,22 @@ export class HomeComponent implements OnInit {
 
             console.log("Scan format: " + result.format);
             console.log("Scan text:   " + result.text);
-            HomeComponent.SaveContact();
+            var json= JSON.parse(result.text);
             var app = require( "application" );
             var contacts = require( "nativescript-contacts" );
             var newContact = new contacts.Contact();
-            newContact.name.given = "AAdrak";
-            newContact.name.family = "LASAN";
-            newContact.phoneNumbers.push({ label: contacts.KnownLabel.HOME, value: "000000000" }); // See below for known labels
-            newContact.phoneNumbers.push({ label: "My Custom Label", value: "1111111111" });
+            newContact.name.given = json.fname;
+            newContact.name.family = json.lname;
+            newContact.phoneNumbers.push({ label: contacts.KnownLabel.HOME, value: json.ph1 }); // See below for known labels
+            newContact. emailAddresses.push({ label:contacts.KnownLabel.HOME, value:json.email });
             newContact.save();
-        
-           
+
         }, (error) => {
             console.log("No scan: " + error);
         });
     }
 
-
-   static SaveContact()
-   {
-        var app = require( "application" );
-        var contacts = require( "nativescript-contacts" );
-        var newContact = new contacts.Contact();
-        newContact.name.given = "John";
-        newContact.name.family = "Doe";
-        newContact.phoneNumbers.push({ label: contacts.KnownLabel.HOME, value: "000000000" }); // See below for known labels
-        newContact.phoneNumbers.push({ label: "My Custom Label", value: "1111111111" });
-        newContact.save();
-        alert("Contact saved");
-
-    }
-
+    
     getpermissions(){
         var permissions = require('nativescript-permissions');
         permissions.requestPermission(android.Manifest.permission.READ_CONTACTS, "I need these permissions because I'm cool")

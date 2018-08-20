@@ -15,35 +15,11 @@ export class SearchComponent implements OnInit {
     @ViewChild("barcodeImg") barcodeImg: ElementRef;
     tabSelectedIndex: number;
     
-    /*data = new Array("BEGIN:VCARD",
-        "VERSION:3.0",
-        "N:Doe;John;;;",
-        "FN:John Doe",
-        "ORG:Example.com Inc.;",
-        "TITLE:Imaginary test person",
-        "EMAIL;type=INTERNET;type=WORK;type=pref:johnDoe@example.org",
-        "TEL;type=WORK;type=pref:+1 617 555 1212",
-        "TEL;type=WORK:+1 (617) 555-1234",
-        "TEL;type=CELL:+1 781 555 1212",
-        "TEL;type=HOME:+1 202 555 1212",
-        "item1.ADR;type=WORK:;;2 Enterprise Avenue;Worktown;NY;01111;USA",
-        "item1.X-ABADR:us",
-        "item2.ADR;type=HOME;type=pref:;;3 Acacia Avenue;Hoemtown;MA;02222;USA",
-        "item2.X-ABADR:us",
-        "NOTE:John Doe has a long and varied history\, being documented on more police files that anyone else. Reports of his death are alas numerous.",
-        "item3.URL;type=pref:http\://www.example/com/doe",
-        "item3.X-ABLabel:_$!<HomePage>!$_",
-        "item4.URL:http\://www.example.com/Joe/foaf.df",
-        "item4.X-ABLabel:FOAF",
-        "item5.X-ABRELATEDNAMES;type=pref:Jane Doe",
-        "item5.X-ABLabel:_$!<Friend>!$_",
-        "CATEGORIES:Work,Test group",
-        "X-ABUID:5AD380FD-B2DE-4261-BA99-DE1D1DB52FBE\:ABPerson",
-        "END:VCARD");*/
+   
 
-        fname:string; lname:string; email:string; ph1:string ; ph2:string; 
-        data:string = "{ fname:"+this.fname+"lname:"+ this.lname + "email:"+this.email + "ph1:"+ this.ph1 +"ph2:"+ this.ph2 +"}"
-
+    fname: string="rrrrr"; lname: string="eeeeeee"; email :string="advait.pundlik@xoriant.com";  ph1:string="8007795817";  ph2:string="9876543210";
+    data = "{\"fname\": " + this.fname + "," + "\"lname\": "+ this.lname+ "," + "\"email\":" + this.email + "," + "\"ph1\":" + this.ph1  + "," +  "\"ph2\":" + this.ph2 + "}"
+      
     public barcodeText = new String();
     constructor() {
         this.tabSelectedIndex = 1;
@@ -57,7 +33,36 @@ export class SearchComponent implements OnInit {
     }
 
     generateBarCode() {
-    
+
+        this.pref = require("nativescript-android-preferences");
+        var fname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "fname"
+        }
+        var lname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "lname"
+        }
+
+        var email = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "email"
+        }
+
+        var ph1 = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "ph1"
+        }
+
+        this.fname =this.pref.GetPreference(lname) ;
+        this.lname= this.pref.GetPreference(fname) ;
+        this.email =this.pref.GetPreference(email) ;
+        this.ph1 = this.pref.GetPreference(ph1);
+        this.data = "{\"fname\": " + "\""+this.fname+"\""+","+"\"lname\":"+ "\""+this.lname +"\""+","+"\"email\":" + "\"" + this.email +"\""+ "," + "\"ph1\":" + "\"" + this.ph1 + "\"" + "," + "\"ph2\":" + "\"" +this.ph2 + "\"" + "}"
         this.barcodeText = this.data;
         const barcodeImage = <Image>this.barcodeImg.nativeElement;
         const zx = new ZXing();
@@ -81,4 +86,46 @@ export class SearchComponent implements OnInit {
             this.tabSelectedIndex = 0;
         }
     }
+
+    pref:any;
+
+    show() {
+
+        this.pref = require("nativescript-android-preferences");
+        var fname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "fname"
+        }
+        var lname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "lname"
+        }
+
+        var email = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "email"
+        }
+
+        var ph1 = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "ph1"
+        }
+
+
+     this.pref.GetPreference(lname) ;
+     this.pref.GetPreference(fname) 
+     this.pref.GetPreference(email) 
+     this.pref.GetPreference(ph1);
+
+    }
+
+
+
+
+
+
 }

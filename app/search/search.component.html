@@ -16,9 +16,8 @@
 <TabView selectedIndex="0">
     <StackLayout *tabItem="{title: 'Personal Profile'}">
         <Label text="&#xf0c0;" class="page-icon fa"></Label>
-        <ScrollView>
-            <Label [text]="content" textWrap="true" class="m-15"></Label>
-        </ScrollView>
+        <Image #barcodeImg id="barcode-img" class="text-center"></Image>
+        <Button (tap)="show()"  class="btn btn-primary btn-active" text="check"></Button>
     </StackLayout>
     <StackLayout *tabItem="{title: 'Work Profile'}">
         <Image #barcodeImg id="barcode-img" class="text-center"></Image>
