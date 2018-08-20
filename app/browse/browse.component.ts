@@ -10,10 +10,14 @@ import { registerElement } from "nativescript-angular/element-registry";
     templateUrl: "./browse.component.html",
     styleUrls: ["./browse.component.css"]
 })
-export class BrowseComponent implements OnInit  {
-
-     pref:any;
-    constructor() { 
+export class BrowseComponent implements OnInit {
+    public firstname = "";
+    public lastname = "";
+    public emailID = "";
+    public phone_number = "";
+    public LinkedIn = "";
+    pref: any;
+    constructor() {
         // Use the component constructor to inject providers.
     }
 
@@ -26,78 +30,76 @@ export class BrowseComponent implements OnInit  {
         sideDrawer.showDrawer();
     }
 
-    save()
-    {
+    save() {
         console.log("hello");
         this.pref = require("nativescript-android-preferences");
-            var lname ={
-                datavalue: "",
-                datatype: this.pref.DataTypes.STRING,
-                prefname: "lname"
-               }
-            lname.datavalue="Doe"
-            this.pref.SavePreference(lname);
-            lname.datavalue = "DefStringPreference";
+        var lname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "lname"
+        }
+        lname.datavalue = this.lastname
+        this.pref.SavePreference(lname);
+        lname.datavalue = "DefStringPreference";
 
-           var fname ={
-                datavalue: "",
-                datatype: this.pref.DataTypes.STRING,
-                prefname: "fname"
-               }
-               fname.datavalue="john";
-               this.pref.SavePreference(fname);
-               fname.datavalue = "DefStringPreference";
-              
-                 var email ={
-                datavalue: "",
-                datatype: this.pref.DataTypes.STRING,
-                prefname: "email"
-               }   
-               email.datavalue="johndoe@example.com";
-               this.pref.SavePreference(email);
-               email.datavalue="DefStringPreference";
+        var fname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "fname"
+        }
+        fname.datavalue = this.firstname;
+        this.pref.SavePreference(fname);
+        fname.datavalue = "DefStringPreference";
 
-               var ph1 ={
-                datavalue: "",
-                datatype: this.pref.DataTypes.STRING,
-                prefname: "ph1"
-               }
-                ph1.datavalue="9876543210";
-                this.pref.SavePreference(ph1);
-                ph1.datavalue="DefStringPreference";
-            console.log(this.pref.GetPreference(lname) +" "+ this.pref.GetPreference(fname)+ " " + this.pref.GetPreference(email) + " " +this.pref.GetPreference(ph1) );
-   }
+        var email = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "email"
+        }
+        email.datavalue = this.emailID;
+        this.pref.SavePreference(email);
+        email.datavalue = "DefStringPreference";
 
-   show()
-   {
-   var fname ={
-        datavalue: "",
-        datatype: this.pref.DataTypes.STRING,
-        prefname: "fname"
-       }
-     var  lname ={
-        datavalue: "",
-        datatype: this.pref.DataTypes.STRING,
-        prefname: "lname"
-       }
-    
-      var email ={
-        datavalue: "",
-        datatype: this.pref.DataTypes.STRING,
-        prefname: "email"
-       }   
-
-       var ph1 ={
-        datavalue: "",
-        datatype: this.pref.DataTypes.STRING,
-        prefname: "ph1"
-       }
-    
-       
-      console.log(this.pref.GetPreference(lname) +" "+ this.pref.GetPreference(fname)+ " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
-     
+        var ph1 = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "ph1"
+        }
+        ph1.datavalue = this.phone_number;
+        this.pref.SavePreference(ph1);
+        ph1.datavalue = "DefStringPreference";
+        console.log(this.pref.GetPreference(lname) + " " + this.pref.GetPreference(fname) + " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
     }
-   
+
+    show() {
+        var fname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "fname"
+        }
+        var lname = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "lname"
+        }
+
+        var email = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "email"
+        }
+
+        var ph1 = {
+            datavalue: "",
+            datatype: this.pref.DataTypes.STRING,
+            prefname: "ph1"
+        }
+
+
+        console.log(this.pref.GetPreference(lname) + " " + this.pref.GetPreference(fname) + " " + this.pref.GetPreference(email) + " " + this.pref.GetPreference(ph1));
+
+    }
+
 
 
 

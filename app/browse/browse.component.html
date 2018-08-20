@@ -16,20 +16,19 @@
 
 <GridLayout class="page page-content">
     <ScrollView>
-            <StackLayout>
-            <Label text= " name"  ></Label>
-            <TextField hint ="john"   ></TextField>
-            <Label text="last  name "></Label>
-            <TextField hint ="Doe"   ></TextField>
-            <Label text="Email" > </Label>
-            <TextField hint ="native script sucks " ></TextField>
-            <Button  text="save" (tap)="save()" ></Button>
-            <Button  text="show" (tap)="show()" ></Button>
-
-            </StackLayout>
-
-
+        <StackLayout>
+            <Label text="First name"></Label>
+            <TextField hint="John" [(ngModel)]="firstname"></TextField>
+            <Label text="Last Name"></Label>
+            <TextField hint="Doe" [(ngModel)]="lastname"></TextField>
+            <Label text="Email"> </Label>
+            <TextField hint="john.doe@example.com" keyboardType="email" [(ngModel)]="emailID"></TextField>
+            <Label text="Contact Number"> </Label>
+            <TextField hint="915-8010-485" keyboardType="phone" [(ngModel)]="phone_number"></TextField>
+            <Label text="LinkedIn Profile"> </Label>
+            <TextField hint="Enter url" keyboardType="url" [(ngModel)]="LinkedIn"></TextField>
+            <Button text="save" class="btn btn-primary btn-active" (tap)="save()"></Button>
+            <Button text="show" class="btn btn-primary btn-active" (tap)="show()"></Button>
+        </StackLayout>
     </ScrollView>
-    <FAB (tap)="fabTap()" icon="res://ic_add_white" rippleColor="#f1f1f1" class="fab-button"></FAB>
-    <FAB (tap)="fabTap()" icon="res://ic_add_white" rippleColor="#f1f1f1" class="fab-button" ng-model="all"></FAB>
 </GridLayout>
